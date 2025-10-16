@@ -1,0 +1,121 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coiny Road — a Crossy Road style game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <!-- Top HUD -->
+    <header class="hud">
+      <div class="left">
+        <div class="score" aria-live="polite">
+          <div>Score</div>
+          <div id="scoreValue">0</div>
+        </div>
+        <div class="best" aria-live="polite">
+          <div>Best</div>
+          <div id="bestValue">0</div>
+        </div>
+      </div>
+
+      <div class="center title">
+        <div class="logo">Coiny Road</div>
+      </div>
+
+      <div class="right">
+        <button id="soundBtn" class="icon-btn" aria-label="Toggle sound" title="Toggle sound">🔊</button>
+        <button id="pauseBtn" class="icon-btn" aria-label="Pause game" title="Pause">⏸️</button>
+        <div class="currency" title="Coins">
+          <span id="coinCount">0</span> 🪙
+        </div>
+      </div>
+    </header>
+
+    <!-- Game container -->
+    <section class="game-wrap">
+      <canvas id="gameCanvas" role="application" aria-label="Coiny Road game canvas"></canvas>
+
+      <!-- On-screen directional controls for touch -->
+      <nav class="controls" aria-hidden="false">
+        <button class="dir-btn" data-dir="up" aria-label="Move up">↑</button>
+        <div class="hrow">
+          <button class="dir-btn" data-dir="left" aria-label="Move left">←</button>
+          <button class="dir-btn" data-dir="down" aria-label="Move down">↓</button>
+          <button class="dir-btn" data-dir="right" aria-label="Move right">→</button>
+        </div>
+      </nav>
+    </section>
+
+    <!-- Bottom UI: skins & leaderboard stub -->
+    <aside class="bottom-ui">
+      <div class="skins">
+        <div class="skins-header">
+          <strong>Skins</strong>
+          <div class="coins-small"><span id="coinSmall">0</span> 🪙</div>
+        </div>
+        <div id="skinGrid" class="skin-grid" role="list"></div>
+      </div>
+      <div class="leaderboard">
+        <strong>Local Scores</strong>
+        <ol id="localScores"></ol>
+      </div>
+    </aside>
+
+    <!-- Tutorial overlay -->
+    <div id="tutorial" class="overlay">
+      <div class="modal small">
+        <h2>Welcome to Coiny Road</h2>
+        <p>Hop forward through endless lanes. Avoid cars & trains. Ride logs on rivers. Collect coins to unlock skins.</p>
+        <div class="controls-sample">
+          <div>Desktop: Arrow keys / WASD</div>
+          <div>Mobile: Swipe or tap arrows</div>
+        </div>
+        <label class="skip">
+          <input type="checkbox" id="skipTutorial"> Skip tutorial next time
+        </label>
+        <div class="actions">
+          <button id="startBtn">Start Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pause overlay -->
+    <div id="pauseOverlay" class="overlay hidden">
+      <div class="modal">
+        <h2>Paused</h2>
+        <div class="actions">
+          <button id="resumeBtn">Resume</button>
+          <button id="restartBtn">Restart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game over modal -->
+    <div id="gameOver" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="modal">
+        <h2>Game Over</h2>
+        <p>Score: <span id="finalScore">0</span></p>
+        <p>Best: <span id="finalBest">0</span></p>
+        <p>Coins Collected: <span id="finalCoins">0</span></p>
+        <div class="actions">
+          <button id="retryBtn">Play Again</button>
+          <button id="toMenuBtn">Skins / Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessibility: hidden status for screen readers -->
+    <div id="srStatus" class="sr-only" aria-live="polite"></div>
+  </main>
+
+  <footer class="attribution">
+    <small>Made with ♥ — No external assets. Open the console (F12) for tweak constants.</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
